@@ -26,7 +26,7 @@ return {
   },
 
   {
-    provider = " ",
+    provider = "",
     hl = { fg = colors.surface, bg = utils.get_highlight("StatusLine").bg },
   },
   {

@@ -21,7 +21,7 @@ return {
     self.mode = vim.fn.mode(1) -- :h mode()
   end,
   {
-    provider = " ",
+    provider = "",
     hl = { fg = colors.surface, bg = utils.get_highlight("StatusLine").bg },
   },
   {

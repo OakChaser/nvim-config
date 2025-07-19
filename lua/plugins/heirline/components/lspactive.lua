@@ -3,7 +3,7 @@ local utils = require("heirline.utils")
 local colors = vim.g.my_colors
 return {
   {
-    provider = " ",
+    provider = "",
     hl = { fg = colors.surface, bg = utils.get_highlight("StatusLine").bg },
   },
   {

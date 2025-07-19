@@ -15,7 +15,7 @@ return {
     self.has_changes = self.status_dict.added ~= 0 or self.status_dict.removed ~= 0 or self.status_dict.changed ~= 0
   end,
   {
-    provider = " ",
+    provider = "",
     hl = { fg = colors.subtext, bg = utils.get_highlight("StatusLine").bg },
   },
   {
