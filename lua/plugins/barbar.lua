@@ -6,7 +6,7 @@ return {
   },
   event = "UiEnter",
   opts = {
-    insert_at_start = true,
+    insert_at_start = false,
     icons = {
       buffer_index = true,
       diagnostics = {
