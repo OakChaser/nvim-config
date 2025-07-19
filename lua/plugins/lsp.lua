@@ -4,6 +4,7 @@ return {
     -- used for completion, annotations and signatures of Neovim apis
     "folke/lazydev.nvim",
     ft = "lua",
+    event = "VeryLazy",
     opts = {
       library = {
         -- Load luvit types when the `vim.uv` word is found
@@ -174,10 +175,10 @@ return {
         underline = { severity = vim.diagnostic.severity.ERROR },
         signs = {
           text = {
-            [vim.diagnostic.severity.ERROR] = "󰅚 ",
-            [vim.diagnostic.severity.WARN] = "󰀪 ",
-            [vim.diagnostic.severity.INFO] = "󰋽 ",
-            [vim.diagnostic.severity.HINT] = "󰌶 ",
+            [vim.diagnostic.severity.ERROR] = " ",
+            [vim.diagnostic.severity.WARN] = " ",
+            [vim.diagnostic.severity.INFO] = " ",
+            [vim.diagnostic.severity.HINT] = " ",
           },
         },
         virtual_text = {

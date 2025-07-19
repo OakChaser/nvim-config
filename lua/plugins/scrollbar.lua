@@ -5,7 +5,6 @@ return {
     "kevinhwang91/nvim-hlslens",
     "lewis6991/gitsigns.nvim",
   },
-  event = "UiEnter",
   config = function()
     local group = vim.api.nvim_create_augroup("scrollbar_set_git_colors", {})
     vim.api.nvim_create_autocmd("BufEnter", {

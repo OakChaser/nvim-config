@@ -2,7 +2,6 @@ return {
   "folke/noice.nvim",
   event = "VeryLazy",
   dependencies = {
-    "MunifTanjim/nui.nvim",
     {
       "rcarriga/nvim-notify",
       opts = {
@@ -13,6 +12,12 @@ return {
           vim.api.nvim_exec_autocmds( -- emit our new User event
             "User",
             { pattern = "NotifyFloatOpened", modeline = false }
+          )
+        end),
+        on_close = vim.schedule_wrap(function()
+          vim.api.nvim_exec_autocmds( -- emit our new User event
+            "User",
+            { pattern = "NotifyFloatClosed", modeline = false }
           )
         end),
       },

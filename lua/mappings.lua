@@ -1,3 +1,9 @@
+vim.api.nvim_create_user_command("ToggleWrap", function()
+  vim.wo.wrap = not vim.wo.wrap
+  local new_state = vim.wo.wrap and "ON" or "OFF"
+  vim.notify("Line wrap: " .. new_state, vim.log.levels.INFO)
+end, {})
+
 local qwerty_nmappings = {
   -- Movements
   { "<C-k>", "5<C-y>", mode = { "n", "v" } },
@@ -21,10 +27,10 @@ local qwerty_nmappings = {
   { "<c-s-l>", "<C-w>l" },
   { "<c-h>", "<C-w>h" },
   { "<c-l>", "<C-w>l" },
-  { "<up>", "<cmd>res -1<CR>" },
-  { "<down>", "<cmd>res +1<CR>" },
-  { "<left>", "<cmd>vertical resize+1<CR>" },
-  { "<right>", "<cmd>vertical resize-1<CR>" },
+  -- { "<up>", "<cmd>res -1<CR>" },
+  -- { "<down>", "<cmd>res +1<CR>" },
+  -- { "<left>", "<cmd>vertical resize+1<CR>" },
+  -- { "<right>", "<cmd>vertical resize-1<CR>" },
   { "|", "<cmd>split<cr>" },
   { "\\", "<cmd>vsplit<cr>" },
   -- Others
@@ -40,9 +46,49 @@ local qwerty_nmappings = {
   { "<leader>n", "<cmd>enew<cr>", desc = "New file" },
   { ";", ":", desc = "command", mode = { "n", "v" } },
   { "<leader>L", "<cmd>Lazy<cr>", mode = { "n", "v" } },
+  { "<leader>/", "gcc", mode = "n" },
+  { "<leader>/", "gc", mode = "v" },
+  { "<leader>uw", "<cmd>ToggleWrap<cr>", mode = { "v", "n" }, desc = "Toggle wrap" },
+}
+-- NOTE: Default mode is n,v,i
+local neovide_mappings = {
+  { "<F11>", "<cmd>let g:neovide_fullscreen = !g:neovide_fullscreen<CR>" },
+  {
+    "<c-=>",
+    function()
+      change_scale_factor(1.25)
+    end,
+  },
+  {
+    "<c-->",
+    function()
+      change_scale_factor(1 / 1.25)
+    end,
+  },
+  {
+    "<c-0>",
+    function()
+      vim.g.neovide_scale_factor = 1.0
+    end,
+  },
 }
 
 local nmappings = qwerty_nmappings
 for _, mapping in ipairs(nmappings) do
-  vim.keymap.set(mapping.mode or "n", mapping[1], mapping[2], { noremap = true, expr = mapping.expr or false, desc = mapping.desc or "" })
+  vim.keymap.set(
+    mapping.mode or "n",
+    mapping[1],
+    mapping[2],
+    { noremap = true, expr = mapping.expr or false, desc = mapping.desc or "" }
+  )
+end
+if vim.g.neovide then
+  for _, mapping in ipairs(nmappings) do
+    vim.keymap.set(
+      mapping.mode or { "n", "v", "i" },
+      mapping[1],
+      mapping[2],
+      { noremap = true, expr = mapping.expr or false, desc = mapping.desc or "" }
+    )
+  end
 end

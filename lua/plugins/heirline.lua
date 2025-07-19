@@ -141,7 +141,7 @@ local function Git()
       hl = { fg = colors.subtext, bg = utils.get_highlight("StatusLine").bg },
     },
     {
-      provider = "  ",
+      provider = "  ",
       hl = { fg = utils.get_highlight("StatusLine").bg, bg = colors.subtext, bold = true },
     },
     {
@@ -244,7 +244,7 @@ local function LSPActive()
         for _, server in pairs(vim.lsp.get_clients({ bufnr = 0 })) do
           table.insert(names, server.name)
         end
-        return " " .. table.concat(names, " ")
+        return table.concat(names, " ")
       end,
       hl = { fg = colors.subtext, bg = colors.surface },
     },
@@ -253,7 +253,7 @@ local function LSPActive()
       hl = { fg = colors.subtext, bg = colors.surface },
     },
     {
-      provider = "   ",
+      provider = " ",
       hl = { fg = utils.get_highlight("StatusLine").bg, bg = colors.subtext, bold = true },
     },
     {
@@ -273,25 +273,42 @@ local function LSPActive()
 end
 
 local function WorkDir()
-  local conditions = require("heirline.conditions")
   local utils = require("heirline.utils")
   local colors = vim.g.my_colors
+  local path = {
+    init = function(self)
+      local cwd = vim.fn.getcwd(0)
+      self.cwd = vim.fn.fnamemodify(cwd, ":~")
+    end,
+    flexible = 1,
+    {
+      -- evaluates to the full-lenth path
+      provider = function(self)
+        return self.cwd
+      end,
+      hl = { fg = colors.subtext, bg = colors.surface },
+    },
+    {
+      -- evaluates to the shortened path
+      provider = function(self)
+        return vim.fn.pathshorten(self.cwd)
+      end,
+      hl = { fg = colors.subtext, bg = colors.surface },
+    },
+    {
+      -- evaluates to "", hiding the component
+      provider = function(self)
+        return vim.fn.fnamemodify(self.cwd, ":t")
+      end,
+      hl = { fg = colors.subtext, bg = colors.surface },
+    },
+  }
   return {
     {
       provider = " ",
       hl = { fg = colors.surface, bg = utils.get_highlight("StatusLine").bg },
     },
-    {
-      provider = function()
-        local cwd = vim.fn.getcwd(0)
-        cwd = vim.fn.fnamemodify(cwd, ":~")
-        if not conditions.width_percent_below(#cwd, 0.25) then
-          cwd = vim.fn.pathshorten(cwd)
-        end
-        return " " .. cwd
-      end,
-      hl = { fg = colors.subtext, bg = colors.surface },
-    },
+    path,
     {
       provider = " ",
       hl = { fg = colors.subtext, bg = colors.surface },
@@ -333,7 +350,7 @@ local function Notify()
         "ModeChanged",
         callback = vim.schedule_wrap(function(_, args)
           if -- update on user UpdateTime event and mode change
-            (args.event == "User" and args.match == "NotifyFloatOpened") or (args.event == "ModeChanged" and args.match:match(".*:.*"))
+            (args.event == "User" and (args.match == "NotifyFloatOpened" or args.match == "NotifyFloatClosed")) or (args.event == "ModeChanged" and args.match:match(".*:.*"))
           then
             vim.cmd.redrawstatus() -- redraw on update
           end
@@ -345,7 +362,7 @@ local function Notify()
       end,
     },
     {
-      provider = " ",
+      provider = "",
       update = {
         "ModeChanged",
         callback = vim.schedule_wrap(function(_, args)
@@ -409,7 +426,7 @@ return {
   config = function()
     local utils = require("heirline.utils")
     -- use vim.notify(#require("notify").history()) get count of notify
-    local StatusLine = {
+    local DefaultStatusLine = {
       hl = {
         bg = utils.get_highlight("StatusLine").bg,
         fg = utils.get_highlight("StatusLine").fg,
@@ -418,6 +435,9 @@ return {
       Git(),
       LspDiagnostic(),
       {
+        provider = "      ",
+      },
+      {
         provider = "%=",
       },
       LSPActive(),
@@ -425,8 +445,9 @@ return {
       Notify(),
       -- TODO: Add debugger info
     }
+    -- TODO: TerminalStatusline, HelpPageStatusline,DAPStatusline, split into many files
     require("heirline").setup({
-      statusline = StatusLine,
+      statusline = DefaultStatusLine,
     })
   end,
 }
