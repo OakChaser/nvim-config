@@ -21,6 +21,9 @@ return {
       function()
         local bufs = vim.fn.getbufinfo({ buflisted = 1 })
         if not bufs[2] then
+          if not bufs[1] then
+            vim.cmd("q!")
+          end
           require("alpha").start()
           require("mini.bufremove").delete(bufs[1].bufnr)
         else

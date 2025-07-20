@@ -28,7 +28,7 @@ return {
       -- miscs = {}, -- Uncomment to turn off hard-coded styles
     },
     integrations = {
-      alpha = true,
+      alpha = false,
       barbar = true,
       cmp = true,
       gitsigns = true,

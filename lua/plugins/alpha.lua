@@ -2,6 +2,7 @@ vim.api.nvim_create_autocmd("User", {
   pattern = "AlphaReady",
   callback = function()
     vim.o.showtabline = 0
+    vim.o.laststatus = 0
   end,
 })
 
@@ -9,31 +10,42 @@ vim.api.nvim_create_autocmd("User", {
   pattern = "AlphaClosed",
   callback = function()
     vim.o.showtabline = 2
+    vim.o.laststatus = 3
   end,
 })
 return {
   "goolord/alpha-nvim",
   dependencies = {
-    "nvim-tree/nvim-web-devicons",
     "akinsho/bufferline.nvim",
   },
   config = function()
     local dashboard = require("alpha.themes.dashboard")
     dashboard.section.header.val = {
-      [[                                 .-----.        ]],
-      [[      .----------------------.   | === |        ]],
-      [[      |.-""""""""""""""""""-.|   |-----|        ]],
-      [[      ||                    ||   | === |        ]],
-      [[      ||       NEOVIM       ||   |-----|        ]],
-      [[      ||                    ||   | === |        ]],
-      [[      ||                    ||   |-----|        ]],
-      [[      ||:wq                 ||   |:::::|        ]],
-      [[      |'-..................-'|   |____o|        ]],
-      [[      `"")----------------(""`   ___________    ]],
-      [[     /::::::::::|  |::::::::::\  \ no mouse \   ]],
-      [[    /:::========|  |==hjkl==:::\  \ required \  ]],
-      [[   '""""""""""""'  '""""""""""""'  '""""""""""' ]],
+
+      -- ▖ ▖▄▖▄▖▖▖▄▖▖  ▖
+      -- ▛▖▌▙▖▌▌▌▌▐ ▛▖▞▌
+      -- ▌▝▌▙▖▙▌▚▘▟▖▌▝ ▌
+      --
+      -- ╔╗╔╔═╗╔═╗╦  ╦╦╔╦╗
+      -- ║║║║╣ ║ ║╚╗╔╝║║║║
+      -- ╝╚╝╚═╝╚═╝ ╚╝ ╩╩ ╩
+
+      [[      .-----------------------.   .-----.        ]],
+      [[      |.-"""""""""""""""""""-.|   | === |        ]],
+      [[      ||  ╔╗╔╔═╗╔═╗╦  ╦╦╔╦╗  ||   |-----|        ]],
+      [[      ||  ║║║║╣ ║ ║╚╗╔╝║║║║  ||   | === |        ]],
+      [[      ||  ╝╚╝╚═╝╚═╝ ╚╝ ╩╩ ╩  ||   |-----|        ]],
+      [[      || Help poor children  ||   | === |        ]],
+      [[      ||     in Uganda!      ||   |-----|        ]],
+      [[      ||:wq                  ||   |:::::|        ]],
+      [[      |'-...................-'|   |____o|        ]],
+      [[      `"")-----------------(""`  ___________     ]],
+      [[     /::::::::::|  |::::::::::\  \ no mouse \    ]],
+      [[    /:::========|  |==hjkl==:::\  \ required \   ]],
+      [[   '""""""""""""'  '""""""""""""'  '""""""""""'  ]],
     }
+    dashboard.section.header.opts.hl = "DashboardHead"
+    vim.api.nvim_set_hl(0, "DashboardHead", { fg = vim.g.my_colors.lavender })
     dashboard.section.buttons.val = {
       dashboard.button("LDR S l", "  Last Session", "<leader>Sl"),
       dashboard.button("LDR r  ", "󰇥  Open Yazi", "<leader>r"),
@@ -44,7 +56,15 @@ return {
       dashboard.button("LDR f '", "  Bookmarks", "<leader>f'"),
       dashboard.button("LDR q  ", "  Exit Neovim", "<leader>q"),
     }
+    for _, button in ipairs(dashboard.section.buttons.val) do
+      button.opts.hl = "AlphaDashboardButtons"
+      button.opts.hl_shortcut = "AlphaDashboardShortcut"
+    end
+    vim.api.nvim_set_hl(0, "AlphaDashboardButtons", { fg = vim.g.my_colors.text })
+    vim.api.nvim_set_hl(0, "AlphaDashboardShortcut", { fg = vim.g.my_colors.lavender })
     dashboard.section.footer.val = require("alpha.fortune")()
+    dashboard.section.footer.opts.hl = "AlphaDashboardFooter"
+    vim.api.nvim_set_hl(0, "AlphaDashboardFooter", { fg = vim.g.my_colors.overlay })
     require("alpha").setup(dashboard.config)
   end,
 }
