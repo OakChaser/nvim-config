@@ -41,7 +41,7 @@ return {
           end
         end
       end,
-      desc = "Close other buffers",
+      desc = "Close other buffers but pinned",
     },
     {
       "<a-1>",
@@ -150,9 +150,16 @@ return {
         styles = { "bold" },
         custom = {
           all = {
+            warning = { fg = vim.g.my_colors.orange },
+            warning_visible = { fg = vim.g.my_colors.orange },
+            warning_selected = { fg = vim.g.my_colors.orange },
+            warning_diagnostic = { fg = vim.g.my_colors.orange },
+            warning_diagnostic_visible = { fg = vim.g.my_colors.orange },
+            warning_diagnostic_selected = { fg = vim.g.my_colors.orange },
             duplicate_selected = { fg = vim.g.my_colors.overlay },
             modified_selected = { fg = vim.g.my_colors.text },
             modified = { fg = vim.g.my_colors.overlay },
+            modified_visible = { fg = vim.g.my_colors.overlay },
           },
         },
       }),
