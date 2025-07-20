@@ -1,5 +1,4 @@
 return {}
-
 -- return {
 --   "romgrk/barbar.nvim",
 --   dependencies = {
@@ -14,7 +13,7 @@ return {}
 --       diagnostics = {
 --         [vim.diagnostic.severity.ERROR] = { enabled = true },
 --         [vim.diagnostic.severity.WARN] = { enabled = true },
---         [vim.diagnostic.severity.INFO] = { enabled = true },
+--         [vim.diagnostic.severity.INFO] = { enabled = false },
 --         [vim.diagnostic.severity.HINT] = { enabled = false },
 --       },
 --     },
