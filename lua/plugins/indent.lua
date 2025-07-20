@@ -1,7 +1,7 @@
 return {
   {
     "shellRaining/hlchunk.nvim",
-    event = "UiEnter",
+    event = "VeryLazy",
     opts = {
       chunk = {
         enable = true,

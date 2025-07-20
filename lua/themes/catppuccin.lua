@@ -30,9 +30,11 @@ return {
     integrations = {
       alpha = false,
       barbar = true,
-      cmp = true,
+      cmp = false,
       gitsigns = true,
       nvimtree = true,
+      fidget = true,
+      gitgraph = true,
       treesitter = true,
       telescope = true,
       noice = true,

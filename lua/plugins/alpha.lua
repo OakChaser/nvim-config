@@ -15,10 +15,6 @@ vim.api.nvim_create_autocmd("User", {
 })
 return {
   "goolord/alpha-nvim",
-  dependencies = {
-    "akinsho/bufferline.nvim",
-  },
-  event = "VimEnter",
   config = function()
     local dashboard = require("alpha.themes.dashboard")
     dashboard.section.header.val = {
@@ -48,7 +44,7 @@ return {
     dashboard.section.header.opts.hl = "DashboardHead"
     vim.api.nvim_set_hl(0, "DashboardHead", { fg = vim.g.my_colors.lavender })
     dashboard.section.buttons.val = {
-      dashboard.button("LDR S l", "  Last Session", "<leader>Sl"),
+      dashboard.button("LDR S c", "  Last Session in Current Directory", "<leader>Sc"),
       dashboard.button("LDR r  ", "󰇥  Open Yazi", "<leader>r"),
       dashboard.button("LDR n  ", "  New File", "<leader>n"),
       dashboard.button("LDR f f", "  Find File", "<leader>ff"),
