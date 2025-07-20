@@ -34,7 +34,6 @@ return {
       function()
         local bufs = require("bufferline").get_elements().elements
         local current = vim.api.nvim_get_current_buf()
-        vim.notify("c:" .. current)
         for _, element in ipairs(bufs) do
           if not is_pinned(element) and element.id ~= current then
             require("mini.bufremove").delete(element.id)

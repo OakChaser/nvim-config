@@ -1,7 +1,21 @@
+vim.api.nvim_create_autocmd("User", {
+  pattern = "AlphaReady",
+  callback = function()
+    vim.o.showtabline = 0
+  end,
+})
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = "AlphaClosed",
+  callback = function()
+    vim.o.showtabline = 2
+  end,
+})
 return {
   "goolord/alpha-nvim",
   dependencies = {
     "nvim-tree/nvim-web-devicons",
+    "akinsho/bufferline.nvim",
   },
   config = function()
     local dashboard = require("alpha.themes.dashboard")
