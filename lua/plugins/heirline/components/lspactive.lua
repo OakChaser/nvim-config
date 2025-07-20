@@ -22,7 +22,7 @@ return {
   },
   {
     provider = " ",
-    hl = { fg = utils.get_highlight("StatusLine").bg, bg = colors.subtext, bold = true },
+    hl = { fg = colors.base, bg = colors.subtext, bold = true },
   },
   {
     provider = "",

@@ -30,7 +30,7 @@ if vim.g.neovide then
   vim.g.neovide_hide_mouse_when_typing = true
   vim.g.neovide_cursor_vfx_mode = "torpedo"
   vim.g.neovide_scale_factor = 1.0
-  vim.o.guifont = "FiraCode Nerd Font Mono:h13"
+  vim.o.guifont = "FiraCode Nerd Font:h13"
 end
 
 local config_root = vim.fn.stdpath("config")

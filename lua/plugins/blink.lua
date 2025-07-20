@@ -5,7 +5,10 @@ end
 
 return {
   "Saghen/blink.cmp",
-  dependencies = { "xzbdmw/colorful-menu.nvim", "rafamadriz/friendly-snippets", "folke/lazydev.nvim" },
+  dependencies = {
+    "xzbdmw/colorful-menu.nvim",
+    "rafamadriz/friendly-snippets",
+  },
   version = "1.*",
   event = { "InsertEnter", "CmdlineEnter" },
   opts = {

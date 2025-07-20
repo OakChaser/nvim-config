@@ -3,7 +3,7 @@ return {
   name = "catppuccin",
   priority = 1000,
   opts = {
-    transparent_background = vim.g.no_guibg, -- disables setting the background color.
+    transparent_background = vim.g.no_guibg and not vim.g.neovide, -- disables setting the background color.
     show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
     term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
     dim_inactive = {
@@ -34,12 +34,14 @@ return {
       gitsigns = true,
       nvimtree = true,
       treesitter = true,
+      telescope = true,
       noice = true,
       notify = true,
       mini = {
         enabled = true,
         indentscope_color = "",
       },
+      mason = true,
     },
     config = function()
       local palette = require("catppuccin.palettes").get_palette()

@@ -1,8 +1,7 @@
 return {
   {
     "shellRaining/hlchunk.nvim",
-    event = { "BufReadPost", "BufNewFile" },
-    -- vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, { pattern = "*", command = "EnableHL" })
+    event = "UiEnter",
     opts = {
       chunk = {
         enable = true,

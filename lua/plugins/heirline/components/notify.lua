@@ -78,7 +78,7 @@ return {
     },
     hl = function(self)
       local mode = self.mode:sub(1, 1)
-      return { fg = utils.get_highlight("StatusLine").bg, bg = colors[mode_colors[mode]] }
+      return { fg = colors.base, bg = colors[mode_colors[mode]] }
     end,
   },
   {

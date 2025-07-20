@@ -3,6 +3,8 @@ require("lazy").setup({
     -- import your plugins
     { import = "themes" },
     { import = "plugins" },
+    require("lsp"),
+    { import = "lsp_tools" },
   },
   install = { colorscheme = { "catppuccin" } },
 })

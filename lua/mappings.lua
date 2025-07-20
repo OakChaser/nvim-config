@@ -23,8 +23,8 @@ local qwerty_nmappings = {
   { "<C-j>", "5<C-e>", mode = { "n", "v" } },
   { "<A-j>", "ddp" }, -- NOTE: You need add "xterm*metaSendsEscape: true" to ~/.Xdefaults and run "xrdb -l ~/.Xdefaults"
   { "<A-k>", "ddkP" },
-  { "j", [[v:count?'j':'gj']], expr = true },
-  { "k", [[v:count?'k':'gk']], expr = true },
+  -- { "j", [[v:count?'j':'gj']], expr = true },
+  -- { "k", [[v:count?'k':'gk']], expr = true },
   { "J", "5j", mode = { "n", "v" } },
   { "K", "5k", mode = { "n", "v" } },
   { "H", "0", mode = { "n", "v" } },
@@ -68,8 +68,6 @@ local qwerty_nmappings = {
   { "<leader>n", "<cmd>enew<cr>", desc = "New file" },
   { ";", ":", desc = "command", mode = { "n", "v" } },
   { "<leader>L", "<cmd>Lazy<cr>", mode = { "n", "v" } },
-  { "<leader>/", "gcc", mode = "n" },
-  { "<leader>/", "gc", mode = "v" },
   { "<leader>uw", "<cmd>ToggleWrap<cr>", mode = { "v", "n" }, desc = "Toggle wrap" },
 }
 -- NOTE: Default mode is n,v,i
