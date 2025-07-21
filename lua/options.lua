@@ -21,6 +21,7 @@ vim.opt.mouse = "a"
 vim.opt.cursorline = true
 vim.opt.updatetime = 250
 vim.opt.timeoutlen = 300
+vim.opt.copyindent = true
 
 -- Neovide options
 if vim.g.neovide then
