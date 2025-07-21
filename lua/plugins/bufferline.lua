@@ -133,7 +133,7 @@ return {
         diagnostics = "nvim_lsp",
         numbers = "ordinal",
         indicator = {
-          style = "none",
+          style = "icon",
         },
         diagnostics_indicator = function(_, _, diagnostics_dict, _)
           local number = (diagnostics_dict.error or 0) + (diagnostics_dict.warning or 0)
@@ -152,6 +152,8 @@ return {
         styles = { "bold" },
         custom = {
           all = {
+            indicator_visible = { fg = vim.g.my_colors.lavender },
+            indicator_selected = { fg = vim.g.my_colors.lavender },
             warning = { fg = vim.g.my_colors.orange },
             warning_visible = { fg = vim.g.my_colors.orange },
             warning_selected = { fg = vim.g.my_colors.orange },
