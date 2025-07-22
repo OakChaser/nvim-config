@@ -100,6 +100,32 @@ vim.diagnostic.config({
     end,
   },
 })
+
+vim.keymap.set("n", "[h", function()
+  vim.diagnostic.jump({ severity = vim.diagnostic.severity.HINT, count = -1 })
+end, { desc = "Previous hint" })
+vim.keymap.set("n", "]h", function()
+  vim.diagnostic.jump({ severity = vim.diagnostic.severity.HINT, count = 1 })
+end, { desc = "Next hint" })
+vim.keymap.set("n", "[i", function()
+  vim.diagnostic.jump({ severity = vim.diagnostic.severity.INFO, count = -1 })
+end, { desc = "Previous info" })
+vim.keymap.set("n", "]i", function()
+  vim.diagnostic.jump({ severity = vim.diagnostic.severity.INFO, count = 1 })
+end, { desc = "Next info" })
+vim.keymap.set("n", "[w", function()
+  vim.diagnostic.jump({ severity = vim.diagnostic.severity.WARN, count = -1 })
+end, { desc = "Previous warning" })
+vim.keymap.set("n", "]w", function()
+  vim.diagnostic.jump({ severity = vim.diagnostic.severity.WARN, count = 1 })
+end, { desc = "Next warning" })
+vim.keymap.set("n", "[e", function()
+  vim.diagnostic.jump({ severity = vim.diagnostic.severity.ERROR, count = -1 })
+end, { desc = "Previous error" })
+vim.keymap.set("n", "]e", function()
+  vim.diagnostic.jump({ severity = vim.diagnostic.severity.ERROR, count = 1 })
+end, { desc = "Next error" })
+
 vim.api.nvim_create_autocmd("CursorHold", {
   pattern = "*",
   callback = function()
