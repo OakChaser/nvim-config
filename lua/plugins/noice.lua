@@ -5,6 +5,8 @@ return {
     {
       "rcarriga/nvim-notify",
       opts = {
+        timeout = 200,
+        fps = 60,
         render = "compact",
         top_down = false,
         stages = "slide",

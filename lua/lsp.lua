@@ -5,7 +5,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
       mode = mode or "n"
       vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
     end
-    map("<leader>lr", vim.lsp.buf.rename, "[R]e[n]ame")
+    map("<leader>lr", vim.lsp.buf.rename, "[R]ename")
     map("<leader>ls", require("telescope").extensions.aerial.aerial, "LSP Symbols")
     map("ga", vim.lsp.buf.code_action, "[G]oto Code [A]ction", { "n", "x" })
     map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
@@ -111,6 +111,7 @@ vim.api.nvim_create_autocmd("CursorHold", {
     })
   end,
 })
+
 return {
   {
     "j-hui/fidget.nvim",
@@ -158,9 +159,12 @@ return {
       local servers = {
         lua_ls = {},
         rust_analyzer = {},
+        vue_ls = {},
+        vtsls = {},
       }
       local formatting_tools = {
         "stylua",
+        "prettier",
       }
       local ensure_installed = vim.list_extend(vim.tbl_keys(servers), formatting_tools)
       require("mason").setup({})
@@ -185,12 +189,18 @@ return {
         run_on_start = false,
         start_delay = 0,
       })
-      vim.cmd("MasonToolsUpdate") -- It
+      vim.cmd("MasonToolsUpdate")
     end,
   },
   {
+    -- Default LSP config
     "neovim/nvim-lspconfig",
-    event = "VeryLazy",
-    config = function() end,
+    dependencies = {
+      "mason-org/mason.nvim",
+    },
+    config = function()
+      vim.lsp.config("vtsls", require("lspconfig_overrides.vtsls"))
+      vim.lsp.enable({ "vtsls", "vue_ls" })
+    end,
   },
 }

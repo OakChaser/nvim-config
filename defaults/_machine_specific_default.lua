@@ -1,6 +1,9 @@
 -- If your terminal emulator has transparent background, use `true`
 vim.g.no_guibg = true
 
+-- Enable LSP features
+vim.g.enable_lsp = false
+
 -- Enable AI tool
 vim.g.enable_codeium = false
 

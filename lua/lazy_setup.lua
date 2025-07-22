@@ -1,11 +1,15 @@
+local spec = {
+  -- import your plugins
+  { import = "themes" },
+  { import = "plugins" },
+}
+if vim.g.enable_lsp then
+  table.insert(spec, { import = "language_tools" })
+  table.insert(spec, require("lsp"))
+end
+
 require("lazy").setup({
-  spec = {
-    -- import your plugins
-    { import = "themes" },
-    { import = "plugins" },
-    require("lsp"),
-    { import = "lsp_tools" },
-  },
+  spec = spec,
   install = { colorscheme = { "catppuccin" } },
 })
 

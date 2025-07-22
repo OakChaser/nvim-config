@@ -5,7 +5,7 @@ return {
     opts = {
       chunk = {
         enable = true,
-        use_treesitter = true,
+        use_treesitter = false,
         style = {
           { fg = require("catppuccin.palettes").get_palette().subtext0 },
           { fg = require("catppuccin.palettes").get_palette().red },
@@ -14,7 +14,7 @@ return {
         delay = 0,
       },
       indent = {
-        enable = false,
+        enable = true,
         chars = { "│", "¦", "┆", "┊" },
         use_treesitter = false,
       },
@@ -22,8 +22,7 @@ return {
         enable = false,
       },
       line_num = {
-        enable = true,
-        use_treesitter = true,
+        enable = false,
       },
     },
   },

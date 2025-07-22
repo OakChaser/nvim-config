@@ -7,6 +7,7 @@ vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
 vim.opt.showcmd = true
 vim.opt.breakindent = true
 vim.opt.relativenumber = true
+-- vim.opt.statuscolumn = "%s %l %r "
 vim.opt.number = true
 vim.opt.signcolumn = "yes"
 vim.opt.wrap = false

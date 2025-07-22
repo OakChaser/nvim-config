@@ -18,13 +18,14 @@ return {
     { "<leader>fb", require("telescope.builtin").buffers, desc = "Find buffers" },
     { "<leader>fh", require("telescope.builtin").help_tags, desc = "Find help tags" },
     { "<leader>f'", require("telescope.builtin").marks, desc = "Find marks" },
+    { "<leader>fn", "<cmd>Telescope notify<cr>", desc = "Find notifications" },
     { "<leader>fm", require("telescope.builtin").man_pages, desc = "Find man pages" },
     {
-      "<leader>fn",
+      "<leader>fe",
       function()
         require("telescope.builtin").find_files({ cwd = vim.fn.stdpath("config") })
       end,
-      desc = "Find Neovim files",
+      desc = "Find N[e]ovim files",
     },
   },
   opts = {
