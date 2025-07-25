@@ -35,8 +35,6 @@ return {
       gitgraph = true,
       gitsigns = true,
       grug_far = true,
-      treesitter = true,
-      telescope = true,
       mason = true,
       mini = {
         enabled = true,
@@ -45,6 +43,9 @@ return {
       noice = true,
       notify = true,
       nvimtree = false,
+      treesitter = true,
+      telescope = true,
+      which_key = true,
     },
     config = function()
       local palette = require("catppuccin.palettes").get_palette()
