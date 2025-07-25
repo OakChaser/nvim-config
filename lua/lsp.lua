@@ -65,8 +65,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
     --
     -- This may be unwanted, since they displace some of your code
     if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
+      vim.lsp.inlay_hint.enable(true) -- Default is enabled
       vim.keymap.set("n", "<leader>uh", function()
         vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
+        if vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }) then
+          vim.notify("Inlay hints: " .. "ON")
+        else
+          vim.notify("Inlay hints: " .. "OFF")
+        end
       end, { desc = "Toggle Inlay Hints" })
     end
   end,
@@ -221,6 +227,7 @@ return {
   {
     -- Default LSP config
     "neovim/nvim-lspconfig",
+    event = "VeryLazy",
     dependencies = {
       "mason-org/mason.nvim",
     },

@@ -68,6 +68,7 @@ local qwerty_nmappings = {
   { ";", ":", desc = "command", mode = { "n", "v" } },
   { "<leader>L", "<cmd>Lazy<cr>", mode = { "n", "v" } },
   { "<leader>uw", "<cmd>ToggleWrap<cr>", mode = { "v", "n" }, desc = "Toggle wrap" },
+  { ";", "", mode = "c" },
 }
 -- NOTE: Default mode is n,v,i
 local neovide_mappings = {
