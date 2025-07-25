@@ -1,5 +1,25 @@
 return {
   "stevearc/overseer.nvim",
-  event = "VeryLazy",
+  cmd = {
+    "OverseerOpen",
+    "OverseerClose",
+    "OverseerToggle",
+    "OverseerSaveBundle",
+    "OverseerLoadBundle",
+    "OverseerDeleteBundle",
+    "OverseerRunCmd",
+    "OverseerRun",
+    "OverseerInfo",
+    "OverseerBuild",
+    "OverseerQuickAction",
+    "OverseerTaskAction",
+    "OverseerClearCache",
+  },
+  keys = {
+    { "<leader>or", "<cmd>OverseerRun<cr>", desc = "Overseer: Run" },
+    { "<leader>ob", "<cmd>OverseerBuild<cr>", desc = "Overseer: Build" },
+    { "<leader>oo", "<cmd>OverseerToggle<cr>", desc = "Overseer: Toggle task list" },
+    { "<leader>oc", "<cmd>OverseerClearCache<cr>", desc = "Overseer: Clear cache" },
+  },
   opts = {},
 }
