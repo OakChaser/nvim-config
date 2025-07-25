@@ -1,5 +1,5 @@
-local conditions = require("heirline.conditions")
-local utils = require("heirline.utils")
+local conditions = require "heirline.conditions"
+local utils = require "heirline.utils"
 local colors = vim.g.my_colors
 return {
   {
@@ -9,7 +9,7 @@ return {
   {
     provider = function()
       local names = {}
-      for _, server in pairs(vim.lsp.get_clients({ bufnr = 0 })) do
+      for _, server in pairs(vim.lsp.get_clients { bufnr = 0 }) do
         table.insert(names, server.name)
       end
       return table.concat(names, " ")
@@ -32,9 +32,7 @@ return {
   condition = conditions.lsp_attached,
   update = { "LspAttach", "LspDetach" },
   on_click = {
-    callback = function()
-      vim.cmd("LspInfo")
-    end,
+    callback = function() vim.cmd "LspInfo" end,
     name = "heirline_open_lspinfo",
   },
 }

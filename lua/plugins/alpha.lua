@@ -16,7 +16,7 @@ vim.api.nvim_create_autocmd("User", {
 return {
   "goolord/alpha-nvim",
   config = function()
-    local dashboard = require("alpha.themes.dashboard")
+    local dashboard = require "alpha.themes.dashboard"
     dashboard.section.header.val = {
 
       -- ▖ ▖▄▖▄▖▖▖▄▖▖  ▖
@@ -59,7 +59,7 @@ return {
     end
     vim.api.nvim_set_hl(0, "AlphaDashboardButtons", { fg = vim.g.my_colors.text })
     vim.api.nvim_set_hl(0, "AlphaDashboardShortcut", { fg = vim.g.my_colors.lavender })
-    dashboard.section.footer.val = require("alpha.fortune")()
+    dashboard.section.footer.val = require "alpha.fortune"()
     dashboard.section.footer.opts.hl = "AlphaDashboardFooter"
     vim.api.nvim_set_hl(0, "AlphaDashboardFooter", { fg = vim.g.my_colors.overlay })
     require("alpha").setup(dashboard.config)

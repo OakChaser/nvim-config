@@ -5,16 +5,12 @@ vim.api.nvim_create_user_command("ToggleWrap", function()
 end, {})
 
 local function quit()
-  local bufs = vim.fn.getbufinfo({ buflisted = 1 })
+  local bufs = vim.fn.getbufinfo { buflisted = 1 }
   local protect_buf = vim.api.nvim_create_buf(true, false)
   for _, buf in ipairs(bufs) do
-    if protect_buf ~= buf then
-      require("mini.bufremove").delete(buf.bufnr)
-    end
+    if protect_buf ~= buf then require("mini.bufremove").delete(buf.bufnr) end
   end
-  if vim.fn.getbufinfo({ buflisted = 1 }) and vim.fn.getbufinfo(protect_buf) then
-    vim.cmd("q!")
-  end
+  if vim.fn.getbufinfo { buflisted = 1 } and vim.fn.getbufinfo(protect_buf) then vim.cmd "q!" end
 end
 
 local qwerty_nmappings = {
@@ -75,21 +71,15 @@ local neovide_mappings = {
   { "<F11>", "<cmd>let g:neovide_fullscreen = !g:neovide_fullscreen<CR>" },
   {
     "<c-=>",
-    function()
-      change_scale_factor(1.25)
-    end,
+    function() change_scale_factor(1.25) end,
   },
   {
     "<c-->",
-    function()
-      change_scale_factor(1 / 1.25)
-    end,
+    function() change_scale_factor(1 / 1.25) end,
   },
   {
     "<c-0>",
-    function()
-      vim.g.neovide_scale_factor = 1.0
-    end,
+    function() vim.g.neovide_scale_factor = 1.0 end,
   },
 }
 

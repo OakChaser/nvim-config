@@ -35,30 +35,30 @@ if vim.g.neovide then
   vim.o.guifont = "FiraCode Nerd Font:h13"
 end
 
-local config_root = vim.fn.stdpath("config")
+local config_root = vim.fn.stdpath "config"
 local machine_specific_config_path = config_root .. "/lua/machine_specific.lua"
 if not vim.loop.fs_stat(machine_specific_config_path) then
   local config_file = io.open(machine_specific_config_path, "wb")
   local default_config_path = config_root .. "/defaults/_machine_specific_default.lua"
   local default_config_file = io.open(default_config_path, "rb")
   if default_config_file and config_file then
-    local content = default_config_file:read("*all")
+    local content = default_config_file:read "*all"
     config_file:write(content)
     io.close(default_config_file)
     io.close(config_file)
   end
 end
-require("machine_specific")
+require "machine_specific"
 
 vim.api.nvim_create_user_command("ResetMachineSpec", function()
   local config_file = io.open(machine_specific_config_path, "wb")
   local default_config_path = config_root .. "/defaults/_machine_specific_default.lua"
   local default_config_file = io.open(default_config_path, "rb")
   if default_config_file and config_file then
-    local content = default_config_file:read("*all")
+    local content = default_config_file:read "*all"
     config_file:write(content)
     io.close(default_config_file)
     io.close(config_file)
-    vim.notify("Reset `machine_specific.lua` succesefully")
+    vim.notify "Reset `machine_specific.lua` succesefully"
   end
 end, {})

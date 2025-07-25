@@ -1,6 +1,6 @@
 return {
-  dependencies = { "sindrets/diffview.nvim" },
   "isakbm/gitgraph.nvim",
+  dependencies = { "sindrets/diffview.nvim" },
   opts = {
     git_cmd = "git",
     symbols = {},
@@ -26,9 +26,7 @@ return {
   keys = {
     {
       "<leader>G",
-      function()
-        require("gitgraph").draw({}, { all = true, max_count = 5000 })
-      end,
+      function() require("gitgraph").draw({}, { all = true, max_count = 5000 }) end,
       desc = "GitGraph - Draw",
     },
   },

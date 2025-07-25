@@ -1,6 +1,4 @@
-if not vim.g.enable_codeium then
-  return {}
-end
+if not vim.g.enable_codeium then return {} end
 
 return {
   "Exafunction/windsurf.nvim",
@@ -10,7 +8,7 @@ return {
   event = { "InsertEnter" },
   opts = {},
   config = function()
-    require("codeium").setup({
+    require("codeium").setup {
       enable_cmp_source = false,
       virtual_text = {
         enabled = true,
@@ -21,6 +19,6 @@ return {
       key_bindings = {
         accept = "<c-tab>",
       },
-    })
+    }
   end,
 }

@@ -21,9 +21,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     ---@param method vim.lsp.protocol.Method
     ---@param bufnr? integer some lsp support methods only in specific files
     ---@return boolean
-    local function client_supports_method(client, method, bufnr)
-      return client:supports_method(method, bufnr)
-    end
+    local function client_supports_method(client, method, bufnr) return client:supports_method(method, bufnr) end
 
     -- The following two autocommands are used to highlight references of the
     -- word under your cursor when your cursor rests there for a little while.
@@ -52,10 +50,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("kickstart-lsp-detach", { clear = true }),
         callback = function(event2)
           vim.lsp.buf.clear_references()
-          vim.api.nvim_clear_autocmds({
+          vim.api.nvim_clear_autocmds {
             group = "kickstart-lsp-highlight",
             buffer = event2.buf,
-          })
+          }
         end,
       })
     end
@@ -67,8 +65,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
     if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
       vim.lsp.inlay_hint.enable(true) -- Default is enabled
       vim.keymap.set("n", "<leader>uh", function()
-        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
-        if vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }) then
+        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
+        if vim.lsp.inlay_hint.is_enabled { bufnr = event.buf } then
           vim.notify("Inlay hints: " .. "ON")
         else
           vim.notify("Inlay hints: " .. "OFF")
@@ -80,7 +78,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 -- Diagnostic Config
 -- See :help vim.diagnostic.Opts
-vim.diagnostic.config({
+vim.diagnostic.config {
   severity_sort = true,
   float = { border = "rounded", source = "if_many" },
   underline = { severity = vim.diagnostic.severity.ERROR },
@@ -105,32 +103,56 @@ vim.diagnostic.config({
       return diagnostic_message[diagnostic.severity]
     end,
   },
-})
+}
 
-vim.keymap.set("n", "[h", function()
-  vim.diagnostic.jump({ severity = vim.diagnostic.severity.HINT, count = -1 })
-end, { desc = "Previous hint" })
-vim.keymap.set("n", "]h", function()
-  vim.diagnostic.jump({ severity = vim.diagnostic.severity.HINT, count = 1 })
-end, { desc = "Next hint" })
-vim.keymap.set("n", "[i", function()
-  vim.diagnostic.jump({ severity = vim.diagnostic.severity.INFO, count = -1 })
-end, { desc = "Previous info" })
-vim.keymap.set("n", "]i", function()
-  vim.diagnostic.jump({ severity = vim.diagnostic.severity.INFO, count = 1 })
-end, { desc = "Next info" })
-vim.keymap.set("n", "[w", function()
-  vim.diagnostic.jump({ severity = vim.diagnostic.severity.WARN, count = -1 })
-end, { desc = "Previous warning" })
-vim.keymap.set("n", "]w", function()
-  vim.diagnostic.jump({ severity = vim.diagnostic.severity.WARN, count = 1 })
-end, { desc = "Next warning" })
-vim.keymap.set("n", "[e", function()
-  vim.diagnostic.jump({ severity = vim.diagnostic.severity.ERROR, count = -1 })
-end, { desc = "Previous error" })
-vim.keymap.set("n", "]e", function()
-  vim.diagnostic.jump({ severity = vim.diagnostic.severity.ERROR, count = 1 })
-end, { desc = "Next error" })
+vim.keymap.set(
+  "n",
+  "[h",
+  function() vim.diagnostic.jump { severity = vim.diagnostic.severity.HINT, count = -1 } end,
+  { desc = "Previous hint" }
+)
+vim.keymap.set(
+  "n",
+  "]h",
+  function() vim.diagnostic.jump { severity = vim.diagnostic.severity.HINT, count = 1 } end,
+  { desc = "Next hint" }
+)
+vim.keymap.set(
+  "n",
+  "[i",
+  function() vim.diagnostic.jump { severity = vim.diagnostic.severity.INFO, count = -1 } end,
+  { desc = "Previous info" }
+)
+vim.keymap.set(
+  "n",
+  "]i",
+  function() vim.diagnostic.jump { severity = vim.diagnostic.severity.INFO, count = 1 } end,
+  { desc = "Next info" }
+)
+vim.keymap.set(
+  "n",
+  "[w",
+  function() vim.diagnostic.jump { severity = vim.diagnostic.severity.WARN, count = -1 } end,
+  { desc = "Previous warning" }
+)
+vim.keymap.set(
+  "n",
+  "]w",
+  function() vim.diagnostic.jump { severity = vim.diagnostic.severity.WARN, count = 1 } end,
+  { desc = "Next warning" }
+)
+vim.keymap.set(
+  "n",
+  "[e",
+  function() vim.diagnostic.jump { severity = vim.diagnostic.severity.ERROR, count = -1 } end,
+  { desc = "Previous error" }
+)
+vim.keymap.set(
+  "n",
+  "]e",
+  function() vim.diagnostic.jump { severity = vim.diagnostic.severity.ERROR, count = 1 } end,
+  { desc = "Next error" }
+)
 
 vim.api.nvim_create_autocmd("CursorHold", {
   pattern = "*",
@@ -199,8 +221,8 @@ return {
         "prettier",
       }
       local ensure_installed = vim.list_extend(vim.tbl_keys(servers), formatting_tools)
-      require("mason").setup({})
-      require("mason-lspconfig").setup({
+      require("mason").setup {}
+      require("mason-lspconfig").setup {
         automatic_installation = false,
         automatic_enable = {
           "lua_ls",
@@ -215,13 +237,13 @@ return {
             vim.lsp.config(server_name, server)
           end,
         },
-      })
-      require("mason-tool-installer").setup({
+      }
+      require("mason-tool-installer").setup {
         ensure_installed = ensure_installed,
         run_on_start = false,
         start_delay = 0,
-      })
-      vim.cmd("MasonToolsUpdate")
+      }
+      vim.cmd "MasonToolsUpdate"
     end,
   },
   {
@@ -232,8 +254,8 @@ return {
       "mason-org/mason.nvim",
     },
     config = function()
-      vim.lsp.config("vtsls", require("lspconfig_overrides.vtsls"))
-      vim.lsp.enable({ "vtsls", "vue_ls" })
+      vim.lsp.config("vtsls", require "lspconfig_overrides.vtsls")
+      vim.lsp.enable { "vtsls", "vue_ls" }
     end,
   },
 }

@@ -1,5 +1,5 @@
 -- If your terminal emulator has transparent background, use `true`
-vim.g.no_guibg = false
+vim.g.no_guibg = false -- TODO: Use nvim-transparent
 
 -- Enable LSP features
 vim.g.enable_lsp = false
@@ -11,4 +11,4 @@ vim.g.enable_debugger = false
 vim.g.enable_codeium = false
 
 -- If you don't have a clipboard provider, comment it.
-vim.cmd("set clipboard+=unnamedplus")
+vim.cmd "set clipboard+=unnamedplus"

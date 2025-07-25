@@ -1,6 +1,6 @@
-local utils = require("heirline.utils")
-local conditions = require("heirline.conditions")
-local components = require("plugins.heirline.components")
+local utils = require "heirline.utils"
+local conditions = require "heirline.conditions"
+local components = require "plugins.heirline.components"
 
 local Space = {
   provider = " ",
@@ -23,7 +23,7 @@ local M = {}
 
 M.terminal = {
   condition = function()
-    return conditions.buffer_matches({ buftype = { "terminal" } }) or vim.bo.filetype == "toggleterm"
+    return conditions.buffer_matches { buftype = { "terminal" } } or vim.bo.filetype == "toggleterm"
   end,
   hl = {
     bg = utils.get_highlight("StatusLine").bg,

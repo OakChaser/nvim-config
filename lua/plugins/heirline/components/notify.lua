@@ -13,7 +13,7 @@ local mode_colors = {
   ["!"] = "blue",
   t = "pink",
 }
-local utils = require("heirline.utils")
+local utils = require "heirline.utils"
 local colors = vim.g.my_colors
 return {
   init = function(self)
@@ -25,16 +25,14 @@ return {
     hl = { fg = colors.surface, bg = utils.get_highlight("StatusLine").bg },
   },
   {
-    provider = function()
-      return " " .. #require("notify").history() .. " "
-    end,
+    provider = function() return " " .. #require("notify").history() .. " " end,
     update = {
       "User",
       "ModeChanged",
       callback = vim.schedule_wrap(function(_, args)
         if -- update on user UpdateTime event and mode change
           (args.event == "User" and (args.match == "NotifyFloatOpened" or args.match == "NotifyFloatClosed"))
-          or (args.event == "ModeChanged" and args.match:match(".*:.*"))
+          or (args.event == "ModeChanged" and args.match:match ".*:.*")
         then
           vim.cmd.redrawstatus() -- redraw on update
         end
@@ -52,7 +50,7 @@ return {
       callback = vim.schedule_wrap(function(_, args)
         if -- update on user UpdateTime event and mode change
           (args.event == "User" and args.match == "NotifyFloatOpened")
-          or (args.event == "ModeChanged" and args.match:match(".*:.*"))
+          or (args.event == "ModeChanged" and args.match:match ".*:.*")
         then
           vim.cmd.redrawstatus() -- redraw on update
         end
@@ -70,7 +68,7 @@ return {
       callback = vim.schedule_wrap(function(_, args)
         if -- update on user UpdateTime event and mode change
           (args.event == "User" and args.match == "NotifyFloatOpened")
-          or (args.event == "ModeChanged" and args.match:match(".*:.*"))
+          or (args.event == "ModeChanged" and args.match:match ".*:.*")
         then
           vim.cmd.redrawstatus() -- redraw on update
         end
@@ -88,7 +86,7 @@ return {
       callback = vim.schedule_wrap(function(_, args)
         if -- update on user UpdateTime event and mode change
           (args.event == "User" and args.match == "NotifyFloatOpened")
-          or (args.event == "ModeChanged" and args.match:match(".*:.*"))
+          or (args.event == "ModeChanged" and args.match:match ".*:.*")
         then
           vim.cmd.redrawstatus() -- redraw on update
         end
@@ -100,9 +98,7 @@ return {
     end,
   },
   on_click = {
-    callback = function()
-      vim.cmd("Telescope notify")
-    end,
+    callback = function() vim.cmd "Telescope notify" end,
     name = "heirline_notify_list",
   },
 }

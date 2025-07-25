@@ -1,11 +1,11 @@
-local conditions = require("heirline.conditions")
-local utils = require("heirline.utils")
+local conditions = require "heirline.conditions"
+local utils = require "heirline.utils"
 local colors = vim.g.my_colors
 return {
   condition = conditions.is_git_repo,
   on_click = {
     callback = function()
-      toggle_term_cmd({ hidden = true, cmd = "lazygit", direction = "float", display_name = "LazyGit" })
+      Toggle_term_cmd { hidden = true, cmd = "lazygit", direction = "float", display_name = "LazyGit" }
     end,
     name = "heirline_open_lazygit",
   },
@@ -27,9 +27,7 @@ return {
     hl = { fg = colors.subtext, bg = colors.surface },
   },
   {
-    provider = function(self)
-      return " " .. self.status_dict.head
-    end,
+    provider = function(self) return " " .. self.status_dict.head end,
     hl = { fg = colors.subtext, bg = colors.surface },
   },
   {

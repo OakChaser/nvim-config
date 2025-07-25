@@ -1,4 +1,4 @@
-local utils = require("heirline.utils")
+local utils = require "heirline.utils"
 local colors = vim.g.my_colors
 
 local mode_colors = {
@@ -59,9 +59,7 @@ local ViModeText = {
       t = "TER",
     },
   },
-  provider = function(self)
-    return " %2(" .. self.mode_names[self.mode] .. "%) "
-  end,
+  provider = function(self) return " %2(" .. self.mode_names[self.mode] .. "%) " end,
   hl = function(self)
     local mode = self.mode:sub(1, 1) -- get only the first mode character
     return { fg = colors.base, bg = colors[mode_colors[mode]], bold = true }
@@ -69,9 +67,7 @@ local ViModeText = {
   update = {
     "ModeChanged",
     pattern = "*:*",
-    callback = vim.schedule_wrap(function()
-      vim.cmd("redrawstatus")
-    end),
+    callback = vim.schedule_wrap(function() vim.cmd "redrawstatus" end),
   },
 }
 local ViModeLeftDelimiter = {
@@ -86,15 +82,11 @@ local ViModeLeftDelimiter = {
   update = {
     "ModeChanged",
     pattern = "*:*",
-    callback = vim.schedule_wrap(function()
-      vim.cmd("redrawstatus")
-    end),
+    callback = vim.schedule_wrap(function() vim.cmd "redrawstatus" end),
   },
 }
 local ViModeIcon = {
-  init = function(self)
-    self.mode = vim.fn.mode(1)
-  end,
+  init = function(self) self.mode = vim.fn.mode(1) end,
   provider = "  ",
   hl = function(self)
     local mode = self.mode:sub(1, 1)
@@ -103,32 +95,22 @@ local ViModeIcon = {
   update = {
     "ModeChanged",
     pattern = "*:*",
-    callback = vim.schedule_wrap(function()
-      vim.cmd("redrawstatus")
-    end),
+    callback = vim.schedule_wrap(function() vim.cmd "redrawstatus" end),
   },
 }
 local ViModeRightDelimiter = {
-  init = function(self)
-    self.mode = vim.fn.mode(1)
-  end,
+  init = function(self) self.mode = vim.fn.mode(1) end,
   provider = "",
-  hl = function()
-    return { fg = colors.surface, bg = utils.get_highlight("StatusLine").bg }
-  end,
+  hl = function() return { fg = colors.surface, bg = utils.get_highlight("StatusLine").bg } end,
   update = {
     "ModeChanged",
     pattern = "*:*",
-    callback = vim.schedule_wrap(function()
-      vim.cmd("redrawstatus")
-    end),
+    callback = vim.schedule_wrap(function() vim.cmd "redrawstatus" end),
   },
 }
 return {
   on_click = {
-    callback = function()
-      vim.cmd("Telescope keymaps")
-    end,
+    callback = function() vim.cmd "Telescope keymaps" end,
     name = "heirline_keymaps_list",
   },
   ViModeLeftDelimiter,

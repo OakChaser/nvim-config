@@ -1,10 +1,8 @@
-local utils = require("heirline.utils")
+local utils = require "heirline.utils"
 local colors = vim.g.my_colors
 
 local function get_terminal_program()
-  if vim.b.term_title and vim.b.term_title ~= "" then
-    return vim.b.term_title
-  end
+  if vim.b.term_title and vim.b.term_title ~= "" then return vim.b.term_title end
   local pid = vim.fn.getpid()
   local cmd = string.format("ps -o comm= -p %d", pid)
   local handle = io.popen(cmd)
@@ -44,15 +42,11 @@ return {
   provider = function()
     local max_width = vim.o.columns - 24
     local content = get_terminal_program()
-    if #content > max_width then
-      content = content:sub(1, max_width - 1) .. "…"
-    end
+    if #content > max_width then content = content:sub(1, max_width - 1) .. "…" end
     return " " .. content
   end,
   on_click = {
-    callback = function()
-      print(get_terminal_program())
-    end,
+    callback = function() print(get_terminal_program()) end,
     name = "heirline_show_terminal_name",
   },
   hl = { fg = colors.lavender },

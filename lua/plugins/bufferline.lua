@@ -1,12 +1,9 @@
-local function is_pinned(element)
-  return require("bufferline.groups")._is_pinned(element)
-end
+local function is_pinned(element) return require("bufferline.groups")._is_pinned(element) end
 
 return {
   "akinsho/bufferline.nvim",
   version = "*",
   event = { "BufReadPre", "BufNewFile" },
-
   dependencies = {
     "nvim-tree/nvim-web-devicons",
     "catppuccin/nvim",
@@ -19,11 +16,9 @@ return {
     {
       "<leader>c",
       function()
-        local bufs = vim.fn.getbufinfo({ buflisted = 1 })
+        local bufs = vim.fn.getbufinfo { buflisted = 1 }
         if not bufs[2] then
-          if not bufs[1] then
-            vim.cmd("q!")
-          end
+          if not bufs[1] then vim.cmd "q!" end
           require("alpha").start()
           require("mini.bufremove").delete(bufs[1].bufnr)
         else
@@ -38,9 +33,7 @@ return {
         local bufs = require("bufferline").get_elements().elements
         local current = vim.api.nvim_get_current_buf()
         for _, element in ipairs(bufs) do
-          if not is_pinned(element) and element.id ~= current then
-            require("mini.bufremove").delete(element.id)
-          end
+          if not is_pinned(element) and element.id ~= current then require("mini.bufremove").delete(element.id) end
         end
       end,
       desc = "Close other buffers but pinned",
@@ -128,7 +121,7 @@ return {
     },
   },
   config = function()
-    require("bufferline").setup({
+    require("bufferline").setup {
       options = {
         diagnostics = "nvim_lsp",
         numbers = "ordinal",
@@ -137,18 +130,16 @@ return {
         },
         diagnostics_indicator = function(_, _, diagnostics_dict, _)
           local number = (diagnostics_dict.error or 0) + (diagnostics_dict.warning or 0)
-          if number == 0 then
-            return ""
-          end
+          if number == 0 then return "" end
           return tostring(number)
         end,
         groups = {
           items = {
-            require("bufferline.groups").builtin.pinned:with({ icon = " 󰐃" }),
+            require("bufferline.groups").builtin.pinned:with { icon = " 󰐃" },
           },
         },
       },
-      highlights = require("catppuccin.groups.integrations.bufferline").get({
+      highlights = require("catppuccin.groups.integrations.bufferline").get {
         styles = { "bold" },
         custom = {
           all = {
@@ -166,7 +157,7 @@ return {
             modified_visible = { fg = vim.g.my_colors.overlay },
           },
         },
-      }),
-    })
+      },
+    }
   end,
 }

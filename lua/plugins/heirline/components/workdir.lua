@@ -1,5 +1,5 @@
-local utils = require("heirline.utils")
-local conditions = require("heirline.conditions")
+local utils = require "heirline.utils"
+local conditions = require "heirline.conditions"
 local colors = vim.g.my_colors
 local path = {
   init = function(self)
@@ -40,9 +40,7 @@ return {
     hl = { fg = colors.subtext, bg = utils.get_highlight("StatusLine").bg },
   },
   on_click = {
-    callback = function()
-      vim.cmd("Yazi cwd")
-    end,
+    callback = function() vim.cmd "Yazi cwd" end,
     name = "heirline_open_yazi",
   },
 }
