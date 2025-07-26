@@ -4,15 +4,6 @@ vim.api.nvim_create_user_command("ToggleWrap", function()
   vim.notify("Line wrap: " .. new_state, vim.log.levels.INFO)
 end, {})
 
-local function quit()
-  local bufs = vim.fn.getbufinfo { buflisted = 1 }
-  local protect_buf = vim.api.nvim_create_buf(true, false)
-  for _, buf in ipairs(bufs) do
-    if protect_buf ~= buf then require("mini.bufremove").delete(buf.bufnr) end
-  end
-  if vim.fn.getbufinfo { buflisted = 1 } and vim.fn.getbufinfo(protect_buf) then vim.cmd "q!" end
-end
-
 local qwerty_nmappings = {
   -- Movements
   { "<C-k>", "5<C-y>", mode = { "n", "v" } },
@@ -49,16 +40,8 @@ local qwerty_nmappings = {
   { "`", "~", mode = "v" },
   { "p", "P", mode = "v" },
   { "<leader>w", "<cmd>w<cr>", desc = "Save" },
-  {
-    "<leader>q",
-    quit,
-    desc = "Quit",
-  },
-  {
-    "<c-q>",
-    "<cmd>q!<cr>",
-    desc = "Force Quit",
-  },
+  { "<leader>q", "<cmd>q<cr>", desc = "Quit" },
+  { "<c-q>", "<cmd>q!<cr>", desc = "Force Quit" },
   { "<C-s>", "<cmd>w<cr>", desc = "Save", mode = { "n", "v", "i" } },
   { "<leader>n", "<cmd>enew<cr>", desc = "New file" },
   { ";", ":", desc = "command", mode = { "n", "v" } },
