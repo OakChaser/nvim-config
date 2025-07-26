@@ -7,7 +7,7 @@ if vim.g.enable_lsp then
   table.insert(spec, { import = "language_tools" })
   table.insert(spec, require "lsp")
 end
-if vim.g.enable_debugger then table.insert(spec, require "debugger") end
+if vim.g.enable_debugger then table.insert(spec, require "nvim-dap") end
 
 require("lazy").setup {
   spec = spec,

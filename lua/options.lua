@@ -1,28 +1,27 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-vim.opt.termguicolors = true
+vim.o.termguicolors = true
 vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
 
-vim.opt.showcmd = true
-vim.opt.breakindent = true
-vim.opt.relativenumber = true
--- vim.opt.statuscolumn = "%s %l %r "
-vim.opt.number = true
-vim.opt.signcolumn = "yes"
-vim.opt.wrap = false
-vim.opt.splitright = true
-vim.opt.splitbelow = true
-vim.opt.ignorecase = true
-vim.opt.scrolloff = 5
-vim.opt.sidescrolloff = 5
-vim.opt.smartcase = true
-vim.opt.showmode = false
-vim.opt.mouse = "a"
-vim.opt.cursorline = true
-vim.opt.updatetime = 250
-vim.opt.timeoutlen = 300
-vim.opt.copyindent = true
+vim.o.showcmd = true
+vim.o.breakindent = true
+vim.o.relativenumber = true
+vim.o.number = true
+vim.o.signcolumn = "yes"
+vim.o.wrap = false
+vim.o.splitright = true
+vim.o.splitbelow = true
+vim.o.ignorecase = true
+vim.o.scrolloff = 5
+vim.o.sidescrolloff = 5
+vim.o.smartcase = true
+vim.o.showmode = false
+vim.o.mouse = "a"
+vim.o.cursorline = true
+vim.o.updatetime = 250
+vim.o.timeoutlen = 300
+vim.o.copyindent = true
 
 -- Neovide options
 if vim.g.neovide then

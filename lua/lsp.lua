@@ -181,6 +181,13 @@ return {
   {
     "mason-org/mason.nvim",
     event = "VeryLazy",
+    keys = {
+      {
+        "<leader>M",
+        "<cmd>Mason<cr>",
+        desc = "Open Mason",
+      },
+    },
     opts = {
       ui = {
         icons = {
@@ -220,7 +227,11 @@ return {
         "stylua",
         "prettier",
       }
+      local dap = {
+        "codelldb",
+      }
       local ensure_installed = vim.list_extend(vim.tbl_keys(servers), formatting_tools)
+      ensure_installed = vim.list_extend(ensure_installed, dap)
       require("mason").setup {}
       require("mason-lspconfig").setup {
         automatic_installation = false,
