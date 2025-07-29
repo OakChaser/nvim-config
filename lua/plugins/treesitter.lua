@@ -1,9 +1,9 @@
-return { -- Highlight, edit, and navigate code
+return {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
   event = "VeryLazy",
   branch = "master",
-  main = "nvim-treesitter.configs", -- Sets main module to use for opts
+  main = "nvim-treesitter.configs",
   opts = {
     ensure_installed = {
       "lua",

@@ -8,7 +8,6 @@ vim.o.showcmd = true
 vim.o.breakindent = true
 vim.o.relativenumber = true
 vim.o.number = true
-vim.o.signcolumn = "yes"
 vim.o.wrap = false
 vim.o.splitright = true
 vim.o.splitbelow = true
@@ -22,6 +21,9 @@ vim.o.cursorline = true
 vim.o.updatetime = 250
 vim.o.timeoutlen = 300
 vim.o.copyindent = true
+vim.o.signcolumn = "yes:2"
+vim.opt.numberwidth = 1
+vim.opt.statuscolumn = "%=%{v:virtnum < 1 ? (v:relnum ? v:relnum : v:lnum < 10 ? v:lnum . '  ' : v:lnum) : ''}%=%s"
 
 -- Neovide options
 if vim.g.neovide then

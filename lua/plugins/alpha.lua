@@ -15,6 +15,9 @@ vim.api.nvim_create_autocmd("User", {
 })
 return {
   "goolord/alpha-nvim",
+  dependencies = {
+    "luukvbaal/statuscol.nvim",
+  },
   config = function()
     local dashboard = require "alpha.themes.dashboard"
     dashboard.section.header.val = {

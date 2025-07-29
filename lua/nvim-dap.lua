@@ -41,7 +41,28 @@ return {
       { "<leader>dR", function() require("dap").repl.toggle() end, desc = "DAP: Open or close REPL" },
       { "<leader>ds", function() require("dap").run_to_cursor() end, desc = "DAP: Run to cursor" },
     },
-    config = function() require "debug_adapters.codelldb" end,
+    config = function()
+      vim.fn.sign_define(
+        "DapBreakpoint",
+        { text = "", texthl = "DapBreakpoint", linehl = "", numhl = "DapBreakpoint" }
+      )
+      vim.fn.sign_define("DapBreakpointCondition", {
+        text = "",
+        texthl = "DapBreakpointCondition",
+        linehl = "DapBreakpointCondition",
+        numhl = "DapBreakpointCondition",
+      })
+      vim.fn.sign_define(
+        "DapStopped",
+        { text = " ", texthl = "DapStopped", linehl = "DapStopped", numhl = "DapStopped" }
+      )
+      local dap, dapui = require "dap", require "dapui"
+      dap.listeners.before.attach.dapui_config = function() dapui.open() end
+      dap.listeners.before.launch.dapui_config = function() dapui.open() end
+      dap.listeners.before.event_terminated.dapui_config = function() dapui.close() end
+      dap.listeners.before.event_exited.dapui_config = function() dapui.close() end
+      require "debug_adapters.codelldb"
+    end,
   },
   {
     "rcarriga/nvim-dap-ui",
@@ -97,12 +118,8 @@ return {
       },
     },
     config = function(_, opts)
-      local dap, dapui = require "dap", require "dapui"
-      dap.listeners.before.attach.dapui_config = function() dapui.open() end
-      dap.listeners.before.launch.dapui_config = function() dapui.open() end
-      dap.listeners.before.event_terminated.dapui_config = function() dapui.close() end
-      dap.listeners.before.event_exited.dapui_config = function() dapui.close() end
-      dapui.setup(opts)
+      require("nvim-dap-virtual-text").setup {}
+      require("dapui").setup(opts)
     end,
   },
 }
