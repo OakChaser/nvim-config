@@ -47,3 +47,4 @@ nvim
 ## After Installation
 
 - Run `:checkhealth`
+- Run `:Mason` to check language tools installation
