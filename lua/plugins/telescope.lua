@@ -18,6 +18,7 @@ return {
     { "<leader>f'", function() require("telescope.builtin").marks() end, desc = "Find marks" },
     { "<leader>fn", "<cmd>Telescope notify<cr>", desc = "Find notifications" },
     { "<leader>fm", function() require("telescope.builtin").man_pages() end, desc = "Find man pages" },
+    { "<leader><cr>", "<cmd>:Telescope resume<cr>", desc = "Find man pages" },
     {
       "<leader>fe",
       function() require("telescope.builtin").find_files { cwd = vim.fn.stdpath "config" } end,

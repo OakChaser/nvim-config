@@ -20,8 +20,8 @@ return {
       ["<C-e>"] = { "hide", "fallback" },
       ["<CR>"] = { "accept", "fallback" },
       ["<Tab>"] = {
-        "snippet_forward",
         "select_next",
+        "snippet_forward",
         function(cmp)
           if has_words_before() or vim.api.nvim_get_mode().mode == "c" then return cmp.show() end
         end,
@@ -52,6 +52,7 @@ return {
           },
         },
       },
+      accept = {},
     },
     signature = {
       enabled = true,

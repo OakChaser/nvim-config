@@ -19,7 +19,6 @@ local qwerty_nmappings = {
   { "c,.", "c%" },
   { "<C-A>", "ggVG", mode = { "n", "v" } },
   { "<C-A>", "<esc>ggVG", mode = "i" },
-  { "<A-o>", "o<esc>k$" },
   -- Window
   { "<c-s-k>", "<C-w>k" },
   { "<c-s-j>", "<C-w>j" },

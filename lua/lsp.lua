@@ -222,10 +222,15 @@ return {
         rust_analyzer = {},
         vue_ls = {},
         vtsls = {},
+        html = {},
+        cssls = {},
+        emmet_ls = {},
+        eslint = {},
       }
       local formatting_tools = {
         "stylua",
         "prettier",
+        "prettierd",
       }
       local dap = {
         "codelldb",
@@ -266,7 +271,9 @@ return {
     },
     config = function()
       vim.lsp.config("vtsls", require "lspconfig_overrides.vtsls")
-      vim.lsp.enable { "vtsls", "vue_ls" }
+      vim.lsp.config("html", require "lspconfig_overrides.html")
+      vim.lsp.config("cssls", require "lspconfig_overrides.cssls")
+      vim.lsp.enable { "vtsls", "vue_ls", "html", "cssls" }
     end,
   },
 }
