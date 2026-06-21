@@ -29,9 +29,9 @@ vim.opt.statuscolumn = "%=%{v:virtnum < 1 ? (v:relnum ? v:relnum : v:lnum < 10 ?
 if vim.g.neovide then
   vim.g.neovide_text_gamma = 0.8
   vim.g.neovide_text_contrast = 0.8
-  vim.g.neovide_transparency = 0.9
+  vim.g.neovide_opacity = 0.9
   vim.g.neovide_hide_mouse_when_typing = true
-  vim.g.neovide_cursor_vfx_mode = "torpedo"
+  -- vim.g.neovide_cursor_vfx_mode = "torpedo"
   vim.g.neovide_scale_factor = 1.0
   vim.o.guifont = "FiraCode Nerd Font:h13"
 end
