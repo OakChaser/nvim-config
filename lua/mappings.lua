@@ -33,7 +33,7 @@ local qwerty_nmappings = {
   { "|", "<cmd>split<cr>" },
   { "\\", "<cmd>vsplit<cr>" },
   -- Others
-  { "<Esc>", "<cmd>nohlsearch<CR>", desc = "Clear search" },
+  { "<Esc>", "<cmd>nohlsearch<CR>", desc = "Clear search", mode = "n" },
   { "<a-esc>", "<c-\\><c-n><c-w>q", mode = "t" },
   { "<c-esc>", "<c-\\><c-n>l", mode = "t" },
   { "`", "~", mode = "v" },
