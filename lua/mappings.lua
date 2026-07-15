@@ -30,37 +30,37 @@ local qwerty_nmappings = {
   -- { "<down>", "<cmd>res +1<CR>" },
   -- { "<left>", "<cmd>vertical resize+1<CR>" },
   -- { "<right>", "<cmd>vertical resize-1<CR>" },
-  { "|", "<cmd>split<cr>" },
-  { "\\", "<cmd>vsplit<cr>" },
+  { "|", "<cmd>split<cr>", mode = { "n", "v" } },
+  { "\\", "<cmd>vsplit<cr>", mode = { "n", "v" } },
   -- Others
   { "<Esc>", "<cmd>nohlsearch<CR>", desc = "Clear search", mode = "n" },
   { "<a-esc>", "<c-\\><c-n><c-w>q", mode = "t" },
   { "<c-esc>", "<c-\\><c-n>l", mode = "t" },
   { "`", "~", mode = "v" },
   { "p", "P", mode = "v" },
-  { "<leader>w", "<cmd>w<cr>", desc = "Save" },
-  { "<leader>q", "<cmd>q<cr>", desc = "Quit" },
+  { "<leader>w", "<cmd>w<cr>", desc = "Save", mode = { "n" } },
+  { "<leader>q", "<cmd>q<cr>", desc = "Quit", mode = { "n" } },
   { "<c-q>", "<cmd>q!<cr>", desc = "Force Quit" },
   { "<C-s>", "<cmd>w<cr>", desc = "Save", mode = { "n", "v", "i" } },
-  { "<leader>n", "<cmd>enew<cr>", desc = "New file" },
+  { "<leader>n", "<cmd>enew<cr>", desc = "New file", mode = { "n" } },
   { ";", ":", desc = "command", mode = { "n", "v" } },
   { "<leader>L", "<cmd>Lazy<cr>", mode = { "n", "v" } },
-  { "<leader>uw", "<cmd>ToggleWrap<cr>", mode = { "v", "n" }, desc = "Toggle wrap" },
+  { "<leader>uw", "<cmd>ToggleWrap<cr>", desc = "Toggle wrap", mode = { "v", "n" } },
   { ";", "", mode = "c" },
 }
 -- NOTE: Default mode is n,v,i
 local neovide_mappings = {
   { "<F11>", "<cmd>let g:neovide_fullscreen = !g:neovide_fullscreen<CR>" },
   {
-    "<c-=>",
+    "<d-=>",
     function() change_scale_factor(1.25) end,
   },
   {
-    "<c-->",
+    "<d-->",
     function() change_scale_factor(1 / 1.25) end,
   },
   {
-    "<c-0>",
+    "<d-0>",
     function() vim.g.neovide_scale_factor = 1.0 end,
   },
 }

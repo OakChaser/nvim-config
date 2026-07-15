@@ -31,9 +31,9 @@ if vim.g.neovide then
   vim.g.neovide_text_contrast = 0.8
   vim.g.neovide_opacity = 0.9
   vim.g.neovide_hide_mouse_when_typing = true
-  -- vim.g.neovide_cursor_vfx_mode = "torpedo"
+  vim.g.neovide_cursor_vfx_mode = "torpedo"
   vim.g.neovide_scale_factor = 1.0
-  vim.o.guifont = "FiraCode Nerd Font:h13"
+  vim.o.guifont = "FiraCode Nerd Font:h16"
 end
 
 local config_root = vim.fn.stdpath "config"

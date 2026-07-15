@@ -15,6 +15,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require "options"
-require "lazy_setup"
+if not vim.g.vscode then require "lazy_setup" end
 require "mappings"
 require "autocommands"

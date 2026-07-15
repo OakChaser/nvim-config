@@ -9,7 +9,6 @@ return {
   opts = {
     bar = {
       enable = function(buf, win, _)
-        -- vim.notify(vim.bo[buf].ft, vim.log.levels.WARN)
         if
           not vim.api.nvim_buf_is_valid(buf)
           or not vim.api.nvim_win_is_valid(win)
@@ -17,6 +16,8 @@ return {
           or vim.wo[win].winbar ~= ""
           or vim.bo[buf].ft == "help"
         then
+          local ft = vim.bo[buf].filetype
+          local bt = vim.bo[buf].buftype
           return false
         end
 

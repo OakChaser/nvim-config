@@ -19,7 +19,11 @@ return {
     },
   },
   opts = {
-    -- if you want to open yazi instead of netrw, see below for more info
     open_for_directories = true,
+  },
+  hooks = {
+    yazi_closed = function(result)
+      if result and result.cwd then vim.api.nvim_set_current_dir(result.cwd) end
+    end,
   },
 }

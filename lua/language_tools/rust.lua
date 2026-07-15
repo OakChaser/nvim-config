@@ -2,7 +2,7 @@ return {
   {
     "mrcjkb/rustaceanvim",
     ft = "rust",
-    version = "^6",
+    version = "^9",
   },
   -- {
   --   "Saecki/crates.nvim",
