@@ -24,4 +24,26 @@ dap.configurations.rust = {
     cwd = "${workspaceFolder}",
     stopOnEntry = false,
   },
+  {
+    name = "Conic Launcher Dev",
+    type = "codelldb",
+    request = "launch",
+
+    cwd = "${workspaceFolder}/core",
+
+    program = function()
+      vim.fn.system {
+        "cargo",
+        "build",
+        "--manifest-path",
+        vim.fn.getcwd() .. "/core/Cargo.toml",
+      }
+      local exe = vim.fn.getcwd() .. "/target/debug/conic-launcher"
+      return exe
+    end,
+
+    stopOnEntry = false,
+  },
 }
+
+dap.adapters.lldb = dap.adapters.codelldb
