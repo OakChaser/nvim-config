@@ -40,8 +40,6 @@ local qwerty_nmappings = {
   { "p", "P", mode = "v" },
   { "<leader>w", "<cmd>w<cr>", desc = "Save", mode = { "n" } },
   { "<leader>q", "<cmd>q<cr>", desc = "Quit", mode = { "n" } },
-  { "<c-q>", "<cmd>q!<cr>", desc = "Force Quit" },
-  { "<C-s>", "<cmd>w<cr>", desc = "Save", mode = { "n", "v", "i" } },
   { "<leader>n", "<cmd>enew<cr>", desc = "New file", mode = { "n" } },
   { ";", ":", desc = "command", mode = { "n", "v" } },
   { "<leader>L", "<cmd>Lazy<cr>", mode = { "n", "v" } },

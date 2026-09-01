@@ -47,6 +47,7 @@ return {
     dashboard.section.header.opts.hl = "DashboardHead"
     vim.api.nvim_set_hl(0, "DashboardHead", { fg = vim.g.my_colors.lavender })
     dashboard.section.buttons.val = {
+      dashboard.button("LDR S c", "  Select session", "<leader>Ss"),
       dashboard.button("LDR S c", "  Last Session in Current Directory", "<leader>Sc"),
       dashboard.button("LDR r  ", "󰇥  Open Yazi", "<leader>r"),
       dashboard.button("LDR n  ", "  New File", "<leader>n"),

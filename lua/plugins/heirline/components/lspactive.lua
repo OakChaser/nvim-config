@@ -32,7 +32,7 @@ return {
   condition = conditions.lsp_attached,
   update = { "LspAttach", "LspDetach" },
   on_click = {
-    callback = function() vim.cmd "LspInfo" end,
+    callback = function() vim.cmd "checkhealth vim.lsp" end,
     name = "heirline_open_lspinfo",
   },
 }
