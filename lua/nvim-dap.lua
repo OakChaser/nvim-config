@@ -62,6 +62,7 @@ return {
       dap.listeners.before.event_terminated.dapui_config = function() dapui.close() end
       dap.listeners.before.event_exited.dapui_config = function() dapui.close() end
       require "debug_adapters.codelldb"
+      require "debug_adapters.python"
     end,
   },
   {

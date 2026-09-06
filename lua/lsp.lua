@@ -226,6 +226,8 @@ return {
         cssls = {},
         emmet_ls = {},
         eslint = {},
+        basedpyright = {},
+        ruff = {},
       }
       local formatting_tools = {
         "stylua",
@@ -234,6 +236,7 @@ return {
       }
       local dap = {
         "codelldb",
+        "debugpy",
       }
       local ensure_installed = vim.list_extend(vim.tbl_keys(servers), formatting_tools)
       ensure_installed = vim.list_extend(ensure_installed, dap)
@@ -242,6 +245,8 @@ return {
         automatic_installation = false,
         automatic_enable = {
           "lua_ls",
+          "basedpyright",
+          "ruff",
         },
         handlers = {
           function(server_name)
@@ -273,6 +278,7 @@ return {
       vim.lsp.config("vtsls", require "lspconfig_overrides.vtsls")
       vim.lsp.config("html", require "lspconfig_overrides.html")
       vim.lsp.config("cssls", require "lspconfig_overrides.cssls")
+      vim.lsp.config("basedpyright", require "lspconfig_overrides.basedpyright")
       vim.lsp.enable { "vtsls", "vue_ls", "html", "cssls" }
     end,
   },
