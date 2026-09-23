@@ -6,6 +6,8 @@ return {
   main = "nvim-treesitter.configs",
   opts = {
     ensure_installed = {
+      "c",
+      "cpp",
       "lua",
       "html",
       "go",
