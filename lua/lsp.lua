@@ -229,6 +229,7 @@ return {
         basedpyright = {},
         ruff = {},
         clangd = {},
+        slint_lsp = {},
       }
       local formatting_tools = {
         "stylua",
@@ -281,7 +282,7 @@ return {
       vim.lsp.config("cssls", require "lspconfig_overrides.cssls")
       vim.lsp.config("basedpyright", require "lspconfig_overrides.basedpyright")
       vim.lsp.config("clangd", require "lspconfig_overrides.clangd")
-      vim.lsp.enable { "vtsls", "vue_ls", "html", "cssls", "clangd" }
+      vim.lsp.enable { "vtsls", "vue_ls", "html", "cssls", "clangd", "slint_lsp" }
     end,
   },
 }
