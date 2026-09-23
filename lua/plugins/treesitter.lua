@@ -15,6 +15,7 @@ return {
       "json",
       "php",
       "rust",
+      "slint",
       "vue",
       "javascript",
       "typescript",
