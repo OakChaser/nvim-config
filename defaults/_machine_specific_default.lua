@@ -10,5 +10,8 @@ vim.g.enable_debugger = false
 -- Enable AI tool
 vim.g.enable_codeium = false
 
+-- Enable wakatime time tracking
+vim.g.enable_wakatime = false
+
 -- If you don't have a clipboard provider, comment it.
 vim.cmd "set clipboard+=unnamedplus"
