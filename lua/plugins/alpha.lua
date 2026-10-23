@@ -20,6 +20,8 @@ return {
   },
   config = function()
     local dashboard = require "alpha.themes.dashboard"
+    local function movement_keys() return vim.g.keyboard_layout == "qwerty" and "hjkl" or "hnei" end
+    local function movement_line() return [[    /:::========|  |==]] .. movement_keys() .. [[==:::\  \ required \   ]] end
     dashboard.section.header.val = {
 
       -- ▖ ▖▄▖▄▖▖▖▄▖▖  ▖
@@ -41,9 +43,18 @@ return {
       [[      |'-...................-'|   |____o|        ]],
       [[      `"")-----------------(""`  ___________     ]],
       [[     /::::::::::|  |::::::::::\  \ no mouse \    ]],
-      [[    /:::========|  |==hjkl==:::\  \ required \   ]],
+      movement_line(),
       [[   '""""""""""""'  '""""""""""""'  '""""""""""'  ]],
     }
+    vim.api.nvim_create_autocmd("User", {
+      group = vim.api.nvim_create_augroup("alpha-keyboard-layout", { clear = true }),
+      pattern = "KeyboardLayoutChanged",
+      callback = function()
+        local header = dashboard.section.header.val
+        header[#header - 1] = movement_line()
+        pcall(function() require("alpha").redraw() end)
+      end,
+    })
     dashboard.section.header.opts.hl = "DashboardHead"
     vim.api.nvim_set_hl(0, "DashboardHead", { fg = vim.g.my_colors.lavender })
     dashboard.section.buttons.val = {

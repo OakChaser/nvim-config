@@ -13,5 +13,8 @@ vim.g.enable_codeium = false
 -- Enable wakatime time tracking
 vim.g.enable_wakatime = false
 
+-- Keyboard layout: "colemak" or "qwerty"
+vim.g.keyboard_layout = "colemak"
+
 -- If you don't have a clipboard provider, comment it.
 vim.cmd "set clipboard+=unnamedplus"
