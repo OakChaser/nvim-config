@@ -37,7 +37,7 @@
   "nvim-notify": { "branch": "master", "commit": "8701bece920b38ea289b457f902e2ad184131a5d" },
   "nvim-python-repl": { "branch": "main", "commit": "09e77dcb9b44e28062a754f8019003bb88fe9734" },
   "nvim-scrollbar": { "branch": "refactor/v2", "commit": "d6d5031e92b26d3a5b1343a3bcddee4e26612abc" },
-  "nvim-treesitter": { "branch": "master", "commit": "cf12346a3414fa1b06af75c79faebe7f76df080a" },
+  "nvim-treesitter": { "branch": "main", "commit": "a9c4e1457e2e59f1b82c8f78dcdb3b2517555200" },
   "nvim-ts-autotag": { "branch": "main", "commit": "d7220b55e16ed3c04e88086256def5d282429493" },
   "nvim-vtsls": { "branch": "main", "commit": "0b5f73c9e50ce95842ea07bb3f05c7d66d87d14a" },
   "nvim-web-devicons": { "branch": "master", "commit": "ec309a0eaff6ea967e58c275996155ab5c16938d" },
