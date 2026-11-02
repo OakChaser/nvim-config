@@ -1,5 +1,6 @@
 return {
   "petertriho/nvim-scrollbar",
+  branch = "refactor/v2",
   event = { "BufReadPre", "BufNewFile" },
   opts = {
     exclude = {
