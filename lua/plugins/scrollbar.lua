@@ -2,27 +2,25 @@ return {
   "petertriho/nvim-scrollbar",
   event = { "BufReadPre", "BufNewFile" },
   opts = {
-    show = true,
-    excluded_buftypes = {
-      "prompt",
-      "nofile",
-      "cmp_menu",
+    exclude = {
+      buftypes = { prompt = true, nofile = true },
+      filetypes = { cmp_menu = true },
     },
-    handle = {
-      text = " ",
-      color = "#6c7086",
-      hide_if_all_visible = true,
+    providers = {
+      search = false,
+      gitsigns = false,
     },
     marks = {
-      Search = { color = "yellow" },
-      Misc = { color = "purple" },
+      Search = { highlight = { fg = "yellow" } },
+      Misc = { highlight = { fg = "purple" } },
     },
-    handlers = {
-      cursor = true,
-      diagnostic = true,
-      gitsigns = false,
-      handle = true,
-      search = false,
+    scrollbar = {
+      show = true,
+      thumb = {
+        text = " ",
+        hide_if_all_visible = true,
+        highlight = { bg = "#6c7086" },
+      },
     },
   },
 }
