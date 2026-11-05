@@ -21,6 +21,11 @@ return {
     { "<leader>tt", "<cmd>terminal<cr>", desc = "Open terminal in new buffer" },
     {
       "<leader>tp",
+      function() Toggle_term_cmd { hidden = true, cmd = "pi", direction = "float", display_name = "Pi" } end,
+      desc = "Open pi agent in terminal",
+    },
+    {
+      "<leader>tP",
       function() Toggle_term_cmd { hidden = true, cmd = "python3", display_name = "Python" } end,
       desc = "Open python in terminal",
     },
