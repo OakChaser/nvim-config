@@ -218,29 +218,31 @@ return {
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        lua_ls = {},
-        rust_analyzer = {},
-        vue_ls = {},
-        vtsls = {},
-        html = {},
-        cssls = {},
-        emmet_ls = {},
-        eslint = {},
-        basedpyright = {},
-        ruff = {},
-        clangd = {},
-        slint_lsp = {},
+        "lua_ls",
+        "rust_analyzer",
+        "vue_ls",
+        "vtsls",
+        "html",
+        "cssls",
+        "emmet_ls",
+        "eslint",
+        "basedpyright",
+        "ruff",
+        "clangd",
+        "cmake-language-server",
+        "slint-lsp",
       }
       local formatting_tools = {
         "stylua",
         "prettier",
         "prettierd",
+        "clang-format",
       }
       local dap = {
         "codelldb",
         "debugpy",
       }
-      local ensure_installed = vim.list_extend(vim.tbl_keys(servers), formatting_tools)
+      local ensure_installed = vim.list_extend(servers, formatting_tools)
       ensure_installed = vim.list_extend(ensure_installed, dap)
       require("mason").setup {}
       require("mason-lspconfig").setup {
@@ -282,6 +284,7 @@ return {
       vim.lsp.config("cssls", require "lspconfig_overrides.cssls")
       vim.lsp.config("basedpyright", require "lspconfig_overrides.basedpyright")
       vim.lsp.config("clangd", require "lspconfig_overrides.clangd")
+      vim.lsp.config("cmake", require "lspconfig_overrides.cmake")
       vim.lsp.enable { "vtsls", "vue_ls", "html", "cssls", "clangd", "slint_lsp" }
     end,
   },

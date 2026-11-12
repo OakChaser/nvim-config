@@ -12,22 +12,19 @@ return {
   },
   opts = {
     notify_on_error = false,
-    format_on_save = function(bufnr)
-      -- Disable "format_on_save lsp_fallback" for languages that don't
-      -- have a well standardized coding style. You can add additional
-      -- languages here or re-enable it for the disabled ones.
-      local disable_filetypes = { c = true, cpp = true }
-      if disable_filetypes[vim.bo[bufnr].filetype] then
-        return nil
-      else
-        return {
-          timeout_ms = 500,
-          lsp_format = "fallback",
-        }
-      end
-    end,
+    format_on_save = {
+      timeout_ms = 500,
+      -- Prefer an external formatter; fall back to the LSP (clangd) if none
+      lsp_format = "fallback",
+    },
     formatters_by_ft = {
       lua = { "stylua" },
+      -- C/C++: clang-format picks up style from .clang-format (via -style=file)
+      c = { "clang_format" },
+      cpp = { "clang_format" },
+      objc = { "clang_format" },
+      objcpp = { "clang_format" },
+      cuda = { "clang_format" },
       python = { "ruff_format", "ruff_organize_imports" },
       -- Conform can also run multiple formatters sequentially
       --
@@ -39,6 +36,9 @@ return {
       typescript = { "prettierd", "prettier", stop_after_first = true },
       vue = { "prettierd", "prettier", stop_after_first = true },
       json = { "prettierd", "prettier", stop_after_first = true },
+      -- Markdown: prettier picks up ~/.prettierrc (printWidth 100, proseWrap always)
+      markdown = { "prettierd", "prettier", stop_after_first = true },
+      ["markdown.mdx"] = { "prettierd", "prettier", stop_after_first = true },
     },
   },
 }

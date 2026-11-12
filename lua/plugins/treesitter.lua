@@ -12,6 +12,7 @@ local parsers = {
   "vue",
   "javascript",
   "typescript",
+  "java",
   "toml",
   "yaml",
   "ini",
