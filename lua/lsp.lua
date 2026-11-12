@@ -206,18 +206,21 @@ return {
     "mason-org/mason-lspconfig.nvim",
     event = "VeryLazy",
     config = function()
-      local capabilities = require("blink.cmp").get_lsp_capabilities()
+      require("mason").setup {}
 
-      -- Enable the following language servers
-      --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
-      --
-      --  Add any additional override configuration in the following tables. Available keys are:
-      --  - cmd (table): Override the default command used to start the server
-      --  - filetypes (table): Override the default list of associated filetypes for the server
-      --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
-      --  - settings (table): Override the default settings passed when initializing the server.
-      --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
-      local servers = {
+      vim.lsp.config("*", {
+        capabilities = require("blink.cmp").get_lsp_capabilities(),
+      })
+
+      require("mason-lspconfig").setup {
+        automatic_enable = {
+          "lua_ls",
+          "basedpyright",
+          "ruff",
+        },
+      }
+
+      local language_servers = {
         "lua_ls",
         "rust_analyzer",
         "vue_ls",
@@ -231,6 +234,8 @@ return {
         "clangd",
         "cmake-language-server",
         "slint-lsp",
+        -- Haskell: HLS is managed by ghcup, not mason (`ghcup install hls`).
+        -- Its wrapper ships per-GHC bindists, so let ghcup own it.
       }
       local formatting_tools = {
         "stylua",
@@ -241,28 +246,11 @@ return {
       local dap = {
         "codelldb",
         "debugpy",
+        "haskell-debug-adapter",
       }
-      local ensure_installed = vim.list_extend(servers, formatting_tools)
+      local ensure_installed = vim.list_extend({}, language_servers)
+      ensure_installed = vim.list_extend(ensure_installed, formatting_tools)
       ensure_installed = vim.list_extend(ensure_installed, dap)
-      require("mason").setup {}
-      require("mason-lspconfig").setup {
-        automatic_installation = false,
-        automatic_enable = {
-          "lua_ls",
-          "basedpyright",
-          "ruff",
-        },
-        handlers = {
-          function(server_name)
-            local server = servers[server_name] or {}
-            -- This handles overriding only values explicitly passed
-            -- by the server configuration above. Useful when disabling
-            -- certain features of an LSP (for example, turning off formatting for ts_ls)
-            server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-            vim.lsp.config(server_name, server)
-          end,
-        },
-      }
       require("mason-tool-installer").setup {
         ensure_installed = ensure_installed,
         run_on_start = false,
@@ -272,7 +260,6 @@ return {
     end,
   },
   {
-    -- Default LSP config
     "neovim/nvim-lspconfig",
     event = "VeryLazy",
     dependencies = {
@@ -285,7 +272,16 @@ return {
       vim.lsp.config("basedpyright", require "lspconfig_overrides.basedpyright")
       vim.lsp.config("clangd", require "lspconfig_overrides.clangd")
       vim.lsp.config("cmake", require "lspconfig_overrides.cmake")
-      vim.lsp.enable { "vtsls", "vue_ls", "html", "cssls", "clangd", "slint_lsp" }
+      vim.lsp.enable {
+        "vtsls",
+        "vue_ls",
+        "html",
+        "cssls",
+        "clangd",
+        "cmake",
+        "slint_lsp",
+        "hls",
+      }
     end,
   },
 }

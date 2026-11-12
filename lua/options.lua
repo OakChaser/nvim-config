@@ -4,6 +4,15 @@ vim.g.maplocalleader = " "
 vim.o.termguicolors = true
 vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
 
+-- GUI/launchd launches don't inherit the shell PATH; make the ghcup toolchain
+-- (ghc/cabal/haskell-language-server) visible regardless of how nvim was started.
+for _, dir in ipairs { "~/.ghcup/bin", "~/.cabal/bin" } do
+  dir = vim.fn.expand(dir)
+  if not (":" .. vim.env.PATH .. ":"):find(":" .. dir .. ":", 1, true) then
+    vim.env.PATH = dir .. ":" .. vim.env.PATH
+  end
+end
+
 vim.o.showcmd = true
 vim.o.breakindent = true
 vim.o.relativenumber = true

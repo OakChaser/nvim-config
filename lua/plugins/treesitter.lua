@@ -15,6 +15,7 @@ local parsers = {
   "java",
   "toml",
   "yaml",
+  "haskell",
   "ini",
   "scss",
   "gitcommit",
