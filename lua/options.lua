@@ -13,6 +13,14 @@ for _, dir in ipairs { "~/.ghcup/bin", "~/.cabal/bin" } do
   end
 end
 
+-- Mason-installed tools (prettierd, stylua, clang-format, ruff, DAP adapters, ...) live
+-- in stdpath("data")/mason/bin. Without it on PATH, conform can't find them and
+-- silently falls back to the LSP (or does nothing at all for filetypes without one).
+local mason_bin = vim.fn.stdpath "data" .. "/mason/bin"
+if vim.fn.isdirectory(mason_bin) == 1 and not (":" .. vim.env.PATH .. ":"):find(":" .. mason_bin .. ":", 1, true) then
+  vim.env.PATH = mason_bin .. ":" .. vim.env.PATH
+end
+
 vim.o.showcmd = true
 vim.o.breakindent = true
 vim.o.relativenumber = true
