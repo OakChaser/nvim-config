@@ -242,11 +242,13 @@ return {
         "prettier",
         "prettierd",
         "clang-format",
+        "gopls",
       }
       local dap = {
         "codelldb",
         "debugpy",
         "haskell-debug-adapter",
+        "go-debug-adapter",
       }
       local ensure_installed = vim.list_extend({}, language_servers)
       ensure_installed = vim.list_extend(ensure_installed, formatting_tools)
@@ -281,6 +283,7 @@ return {
         "cmake",
         "slint_lsp",
         "hls",
+        "gopls",
       }
     end,
   },
