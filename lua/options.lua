@@ -7,10 +7,10 @@ vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
 -- GUI/launchd launches don't inherit the shell PATH; make the ghcup toolchain
 -- (ghc/cabal/haskell-language-server) visible regardless of how nvim was started.
 for _, dir in ipairs { "~/.ghcup/bin", "~/.cabal/bin" } do
-  dir = vim.fn.expand(dir)
-  if not (":" .. vim.env.PATH .. ":"):find(":" .. dir .. ":", 1, true) then
-    vim.env.PATH = dir .. ":" .. vim.env.PATH
-  end
+	dir = vim.fn.expand(dir)
+	if not (":" .. vim.env.PATH .. ":"):find(":" .. dir .. ":", 1, true) then
+		vim.env.PATH = dir .. ":" .. vim.env.PATH
+	end
 end
 
 -- Mason-installed tools (prettierd, stylua, clang-format, ruff, DAP adapters, ...) live
@@ -18,7 +18,7 @@ end
 -- silently falls back to the LSP (or does nothing at all for filetypes without one).
 local mason_bin = vim.fn.stdpath "data" .. "/mason/bin"
 if vim.fn.isdirectory(mason_bin) == 1 and not (":" .. vim.env.PATH .. ":"):find(":" .. mason_bin .. ":", 1, true) then
-  vim.env.PATH = mason_bin .. ":" .. vim.env.PATH
+	vim.env.PATH = mason_bin .. ":" .. vim.env.PATH
 end
 
 vim.o.showcmd = true
@@ -45,43 +45,43 @@ vim.opt.statuscolumn = "%=%{v:virtnum < 1 ? (v:relnum ? v:relnum : v:lnum < 10 ?
 
 -- Neovide options
 if vim.g.neovide then
-  vim.g.neovide_text_gamma = 0.8
-  vim.g.neovide_text_contrast = 0.8
-  vim.g.neovide_opacity = 0.8
-  vim.g.neovide_hide_mouse_when_typing = true
-  vim.g.neovide_scale_factor = 1.0
-  vim.o.guifont = "FiraCode Nerd Font:h16"
-  vim.g.neovide_progress_bar_enabled = false
-  vim.g.neovide_cursor_vfx_mode = "pixiedust"
-  vim.g.neovide_window_blurred = true
-  vim.g.neovide_floating_blur_amount_x = 10.0
-  vim.g.neovide_floating_blur_amount_y = 10.0
+	vim.g.neovide_text_gamma = 0.8
+	vim.g.neovide_text_contrast = 0.8
+	vim.g.neovide_opacity = 0.8
+	vim.g.neovide_hide_mouse_when_typing = true
+	vim.g.neovide_scale_factor = 1.0
+	vim.o.guifont = "FiraCode Nerd Font:h16"
+	vim.g.neovide_progress_bar_enabled = false
+	vim.g.neovide_cursor_vfx_mode = "pixiedust"
+	vim.g.neovide_window_blurred = true
+	vim.g.neovide_floating_blur_amount_x = 10.0
+	vim.g.neovide_floating_blur_amount_y = 10.0
 end
 
 local config_root = vim.fn.stdpath "config"
 local machine_specific_config_path = config_root .. "/lua/machine_specific.lua"
 if not vim.loop.fs_stat(machine_specific_config_path) then
-  local config_file = io.open(machine_specific_config_path, "wb")
-  local default_config_path = config_root .. "/defaults/_machine_specific_default.lua"
-  local default_config_file = io.open(default_config_path, "rb")
-  if default_config_file and config_file then
-    local content = default_config_file:read "*all"
-    config_file:write(content)
-    io.close(default_config_file)
-    io.close(config_file)
-  end
+	local config_file = io.open(machine_specific_config_path, "wb")
+	local default_config_path = config_root .. "/defaults/_machine_specific_default.lua"
+	local default_config_file = io.open(default_config_path, "rb")
+	if default_config_file and config_file then
+		local content = default_config_file:read "*all"
+		config_file:write(content)
+		io.close(default_config_file)
+		io.close(config_file)
+	end
 end
 require "machine_specific"
 
 vim.api.nvim_create_user_command("ResetMachineSpec", function()
-  local config_file = io.open(machine_specific_config_path, "wb")
-  local default_config_path = config_root .. "/defaults/_machine_specific_default.lua"
-  local default_config_file = io.open(default_config_path, "rb")
-  if default_config_file and config_file then
-    local content = default_config_file:read "*all"
-    config_file:write(content)
-    io.close(default_config_file)
-    io.close(config_file)
-    vim.notify "Reset `machine_specific.lua` succesefully"
-  end
+	local config_file = io.open(machine_specific_config_path, "wb")
+	local default_config_path = config_root .. "/defaults/_machine_specific_default.lua"
+	local default_config_file = io.open(default_config_path, "rb")
+	if default_config_file and config_file then
+		local content = default_config_file:read "*all"
+		config_file:write(content)
+		io.close(default_config_file)
+		io.close(config_file)
+		vim.notify "Reset `machine_specific.lua` succesefully"
+	end
 end, {})

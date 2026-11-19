@@ -1,5 +1,5 @@
 return {
-  "dmmulroy/tsc.nvim",
-  cmd = "TSC",
-  opts = {},
+	"dmmulroy/tsc.nvim",
+	cmd = "TSC",
+	opts = {},
 }
